@@ -1,0 +1,190 @@
+ 
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>إدارة الموظفين | Turbo Drive</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/employees.css">
+</head>
+<body>
+
+    <aside class="sidebar">
+        <div class="brand">
+            <span class="brand-mark">TD</span>
+            <div>
+                <strong>Turbo Drive</strong>
+                <small>إدارة المعرض</small>
+            </div>
+        </div>
+
+        <nav>
+            <a href="index.html">نظرة عامة</a>
+            <a href="vehicles.html">السيارات</a>
+            <a href="customers.html">العملاء</a>
+            <a href="sales.html">المبيعات</a>
+            <a href="payments.html">المدفوعات</a>
+            <a class="active" href="employees.html">الموظفون</a>
+            <a href="reports.html">التقارير</a>
+            <a href="index.html#settings">الإعدادات</a>
+        </nav>
+
+        <div class="sidebar-foot">نسخة مستقلة للمعرض</div>
+    </aside>
+
+    <main class="main employees-main">
+
+        <header class="topbar">
+            <div>
+                <span class="eyebrow">إدارة فريق العمل</span>
+                <h1>إدارة الموظفين</h1>
+                <p class="muted">تابع بيانات موظفي المعرض وأدر فريق العمل بسهولة.</p>
+            </div>
+
+            <div class="user-chip">
+                <span class="avatar">م</span>
+                <span>مدير المعرض</span>
+            </div>
+        </header>
+
+        <section class="employee-stats">
+            <article class="stat">
+                <span>إجمالي الموظفين</span>
+                <strong id="totalEmployees">0</strong>
+                <small>موظف مسجل</small>
+            </article>
+
+            <article class="stat">
+                <span>الموظفون النشطون</span>
+                <strong id="activeEmployees">0</strong>
+                <small>يعملون حاليًا</small>
+            </article>
+
+            <article class="stat accent">
+                <span>غير النشطين</span>
+                <strong id="inactiveEmployees">0</strong>
+                <small>موظفون غير نشطين</small>
+            </article>
+        </section>
+
+        <section class="panel">
+
+            <div class="panel-head employees-heading">
+                <div>
+                    <span class="eyebrow">فريق المعرض</span>
+                    <h2>قائمة الموظفين</h2>
+                </div>
+
+                <button class="primary" id="addEmployeeBtn" type="button">
+                    + إضافة موظف
+                </button>
+            </div>
+
+            <div class="employee-filters">
+                <input type="search" id="employeeSearch"
+                       placeholder="ابحث بالاسم أو الهاتف أو الوظيفة...">
+
+                <select id="employeeStatusFilter">
+                    <option value="">كل الحالات</option>
+                    <option value="true">نشط</option>
+                    <option value="false">غير نشط</option>
+                </select>
+            </div>
+
+            <div id="employeeMessage" class="employee-message"></div>
+
+            <div class="table-wrap">
+                <table class="employees-table">
+                    <thead>
+                        <tr>
+                            <th>اسم الموظف</th>
+                            <th>رقم الهاتف</th>
+                            <th>المسمى الوظيفي</th>
+                            <th>الحالة</th>
+                            <th>الإجراءات</th>
+                        </tr>
+                    </thead>
+
+                    <tbody id="employeesTableBody">
+                        <tr>
+                            <td colspan="5" class="empty">جاري تحميل الموظفين...</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+        </section>
+    </main>
+
+    <div class="employee-modal" id="employeeModal">
+        <div class="employee-modal-card">
+
+            <div class="employee-modal-header">
+                <div>
+                    <span class="eyebrow">بيانات فريق العمل</span>
+                    <h2 id="modalTitle">إضافة موظف جديد</h2>
+                </div>
+
+                <button type="button" class="employee-close-modal"
+                        onclick="closeEmployeeModal()">×</button>
+            </div>
+
+            <form id="employeeForm">
+
+                <div class="employee-form-grid">
+
+                    <div class="employee-form-field">
+                        <label for="fullName">الاسم بالكامل *</label>
+                        <input type="text" id="fullName" required maxlength="120"
+                               placeholder="أدخل اسم الموظف">
+                    </div>
+
+                    <div class="employee-form-field">
+                        <label for="phone">رقم الهاتف *</label>
+                        <input type="tel" id="phone" required maxlength="20"
+                               placeholder="+9665XXXXXXXX">
+                    </div>
+
+                    <div class="employee-form-field">
+                        <label for="jobTitle">المسمى الوظيفي *</label>
+                        <select id="jobTitle" required>
+                            <option value="مدير">مدير</option>
+                            <option value="مدير مبيعات">مدير مبيعات</option>
+                            <option value="مسؤول مبيعات">مسؤول مبيعات</option>
+                            <option value="محاسب">محاسب</option>
+                            <option value="موظف" selected>موظف</option>
+                        </select>
+                    </div>
+
+                    <div class="employee-form-field">
+                        <label for="isActive">الحالة</label>
+                        <select id="isActive">
+                            <option value="true">نشط</option>
+                            <option value="false">غير نشط</option>
+                        </select>
+                    </div>
+
+                </div>
+
+                <div class="employee-modal-actions">
+                    <button type="button" class="employee-cancel-btn"
+                            onclick="closeEmployeeModal()">إلغاء</button>
+
+                    <button type="submit" class="primary" id="saveEmployeeBtn">
+                        حفظ الموظف
+                    </button>
+                </div>
+
+            </form>
+        </div>
+    </div>
+
+    <script src="js/employees.js"></script>
+</body>
+</html>

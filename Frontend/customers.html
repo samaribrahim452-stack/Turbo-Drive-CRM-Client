@@ -1,0 +1,227 @@
+
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Turbo Drive | إدارة العملاء</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/customers.css">
+</head>
+<body>
+
+    <aside class="sidebar">
+        <div class="brand">
+            <span class="brand-mark">TD</span>
+            <div>
+                <strong>Turbo_Drive</strong>
+                <small>إدارة المعرض</small>
+            </div>
+        </div>
+
+       <nav>
+    <a href="index.html">نظرة عامة</a>
+    <a href="vehicles.html">السيارات</a>
+    <a class="active" href="customers.html">العملاء</a>
+    <a href="sales.html">المبيعات</a>
+    <a href="payments.html">المدفوعات</a>
+    <a href="employees.html">الموظفون</a>
+    <a href="reports.html">التقارير</a>
+    <a href="settings.html">الإعدادات</a>
+</nav>
+
+        <div class="sidebar-foot">نسخة مستقلة للمعرض</div>
+    </aside>
+
+    <main class="main customers-main">
+
+        <header class="topbar">
+            <div>
+                <span class="eyebrow">إدارة العلاقات</span>
+                <h1>إدارة العملاء</h1>
+                <p class="page-description">إدارة بيانات العملاء ومتابعة فرص البيع.</p>
+            </div>
+
+            <div class="user-chip">
+                <span class="avatar">م</span>
+                <span>مدير المعرض</span>
+            </div>
+        </header>
+
+        <section class="customer-summary">
+            <div class="summary-card">
+                <span>إجمالي العملاء</span>
+                <strong id="totalCustomers">0</strong>
+            </div>
+
+            <div class="summary-card">
+                <span>عملاء جدد</span>
+                <strong id="newCustomers">0</strong>
+            </div>
+
+            <div class="summary-card">
+                <span>مصدرهم TikTok</span>
+                <strong id="tiktokCustomers">0</strong>
+            </div>
+        </section>
+
+        <section class="panel customers-panel">
+
+            <div class="customers-toolbar">
+                <div>
+                    <span class="eyebrow">قاعدة بيانات المعرض</span>
+                    <h2>قائمة العملاء</h2>
+                </div>
+
+                <button class="primary" id="addCustomerBtn">
+                    + إضافة عميل
+                </button>
+            </div>
+
+            <div class="filters">
+                <input
+                    type="search"
+                    id="searchInput"
+                    placeholder="ابحث بالاسم أو رقم الهاتف..."
+                >
+
+                <select id="sourceFilter">
+                    <option value="">كل المصادر</option>
+                    <option value="TikTok">TikTok</option>
+                    <option value="Facebook">Facebook</option>
+                    <option value="WhatsApp">WhatsApp</option>
+                    <option value="اتصال">اتصال</option>
+                    <option value="زيارة المعرض">زيارة المعرض</option>
+                    <option value="غير محدد">غير محدد</option>
+                </select>
+
+                <select id="statusFilter">
+                    <option value="">كل الحالات</option>
+                    <option value="جديد">جديد</option>
+                    <option value="تم التواصل">تم التواصل</option>
+                    <option value="مهتم">مهتم</option>
+                    <option value="غير مهتم">غير مهتم</option>
+                    <option value="تم البيع">تم البيع</option>
+                </select>
+            </div>
+
+            <div id="pageMessage" class="page-message"></div>
+
+            <div class="table-wrap">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>اسم العميل</th>
+                            <th>رقم الهاتف</th>
+                            <th>مصدر العميل</th>
+                            <th>الحملة الإعلانية</th>
+                            <th>حالة المتابعة</th>
+                            <th>الإجراءات</th>
+                        </tr>
+                    </thead>
+
+                    <tbody id="customerRows">
+                        <tr>
+                            <td colspan="6" class="empty">جاري تحميل العملاء...</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+        </section>
+    </main>
+
+    <!-- نافذة إضافة وتعديل العميل -->
+
+    <div class="modal" id="customerModal">
+        <div class="modal-card">
+
+            <div class="modal-heading">
+                <div>
+                    <span class="eyebrow">بيانات العميل</span>
+                    <h2 id="modalTitle">إضافة عميل جديد</h2>
+                </div>
+
+                <button type="button" class="close-modal" id="closeModalBtn">×</button>
+            </div>
+
+            <form id="customerForm">
+
+                <input type="hidden" id="customerId">
+
+                <div class="form-grid">
+
+                    <div class="form-group">
+                        <label for="fullName">اسم العميل *</label>
+                        <input id="fullName" maxlength="120" required placeholder="الاسم بالكامل">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="phone">رقم الهاتف *</label>
+                        <input id="phone" maxlength="20" required placeholder="+9665xxxxxxxx">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="email">البريد الإلكتروني</label>
+                        <input id="email" type="email" maxlength="160" placeholder="example@email.com">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="source">مصدر العميل</label>
+                        <select id="source">
+                            <option value="غير محدد">غير محدد</option>
+                            <option value="TikTok">TikTok</option>
+                            <option value="Facebook">Facebook</option>
+                            <option value="WhatsApp">WhatsApp</option>
+                            <option value="اتصال">اتصال</option>
+                            <option value="زيارة المعرض">زيارة المعرض</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="campaignName">اسم الحملة الإعلانية</label>
+                        <input id="campaignName" maxlength="150" placeholder="اسم الحملة">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="campaignId">رقم الحملة</label>
+                        <input id="campaignId" maxlength="100" placeholder="Campaign ID">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="status">حالة المتابعة</label>
+                        <select id="status">
+                            <option value="جديد">جديد</option>
+                            <option value="تم التواصل">تم التواصل</option>
+                            <option value="مهتم">مهتم</option>
+                            <option value="غير مهتم">غير مهتم</option>
+                            <option value="تم البيع">تم البيع</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group full-width">
+                        <label for="notes">ملاحظات</label>
+                        <textarea id="notes" maxlength="500" rows="3" placeholder="اكتب أي ملاحظات عن العميل..."></textarea>
+                    </div>
+
+                </div>
+
+                <div class="modal-actions">
+                    <button type="button" class="cancel-btn" id="cancelBtn">إلغاء</button>
+                    <button type="submit" class="primary" id="saveCustomerBtn">حفظ العميل</button>
+                </div>
+
+                <p id="formMessage" class="form-message"></p>
+
+            </form>
+        </div>
+    </div>
+
+    <script src="js/customers.js"></script>
+</body>
+</html>

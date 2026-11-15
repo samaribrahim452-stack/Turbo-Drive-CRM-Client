@@ -1,0 +1,215 @@
+
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Turbo_Drive | التقارير</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/reports.css">
+</head>
+<body>
+
+    <aside class="sidebar">
+        <div class="brand">
+            <span class="brand-mark">TD</span>
+            <div>
+                <strong>Turbo_Drive</strong>
+                <small>إدارة المعرض</small>
+            </div>
+        </div>
+
+        <nav>
+            <a href="index.html">نظرة عامة</a>
+            <a href="vehicles.html">السيارات</a>
+            <a href="customers.html">العملاء</a>
+            <a href="sales.html">المبيعات</a>
+            <a href="payments.html">المدفوعات</a>
+            <a href="employees.html">الموظفون</a>
+            <a class="active" href="reports.html">التقارير</a>
+            <a href="settings.html">الإعدادات</a>
+        </nav>
+
+        <div class="sidebar-foot">نسخة مستقلة للمعرض</div>
+    </aside>
+
+    <main class="main">
+
+        <header class="topbar">
+            <div>
+                <span class="eyebrow">تحليل أداء المعرض</span>
+                <h1>التقارير والإحصائيات</h1>
+            </div>
+
+            <div class="user-chip">
+                <span class="avatar">م</span>
+                <span>مدير المعرض</span>
+            </div>
+        </header>
+
+        <section class="report-intro">
+            <div>
+                <span class="eyebrow">REPORT CENTER</span>
+                <h2>تابع أداء معرضك من مكان واحد</h2>
+                <p>ملخص المبيعات والتحصيل والمخزون بناءً على البيانات المسجلة.</p>
+            </div>
+
+            <button class="primary" id="printReport">طباعة التقرير</button>
+        </section>
+
+        <section class="report-filters panel">
+            <div>
+                <label for="dateFrom">من تاريخ</label>
+                <input type="date" id="dateFrom">
+            </div>
+
+            <div>
+                <label for="dateTo">إلى تاريخ</label>
+                <input type="date" id="dateTo">
+            </div>
+
+            <button class="primary" id="applyFilter">تطبيق الفلتر</button>
+            <button class="secondary" id="resetFilter">إعادة ضبط</button>
+        </section>
+
+        <section class="stats report-stats">
+
+            <article class="stat">
+                <span>عدد عمليات البيع</span>
+                <strong id="reportSalesCount">0</strong>
+                <small>عمليات البيع خلال الفترة</small>
+            </article>
+
+            <article class="stat">
+                <span>إجمالي قيمة المبيعات</span>
+                <strong id="reportRevenue">0</strong>
+                <small>ريال سعودي</small>
+            </article>
+
+            <article class="stat">
+                <span>إجمالي المبالغ المحصلة</span>
+                <strong id="reportCollected">0</strong>
+                <small>ريال سعودي</small>
+            </article>
+
+            <article class="stat accent">
+                <span>المبالغ المتبقية</span>
+                <strong id="reportRemaining">0</strong>
+                <small>ريال سعودي</small>
+            </article>
+
+        </section>
+
+        <section class="report-grid">
+
+            <article class="panel">
+                <div class="panel-head">
+                    <div>
+                        <span class="eyebrow">INVENTORY</span>
+                        <h2>حالة المخزون</h2>
+                    </div>
+                </div>
+
+                <div class="inventory-list">
+
+                    <div class="inventory-item">
+                        <span class="inventory-dot available"></span>
+                        <span>السيارات المتاحة</span>
+                        <strong id="availableCount">0</strong>
+                    </div>
+
+                    <div class="inventory-item">
+                        <span class="inventory-dot reserved"></span>
+                        <span>السيارات المحجوزة</span>
+                        <strong id="reservedCount">0</strong>
+                    </div>
+
+                    <div class="inventory-item">
+                        <span class="inventory-dot sold"></span>
+                        <span>السيارات المباعة</span>
+                        <strong id="soldCount">0</strong>
+                    </div>
+
+                    <div class="inventory-total">
+                        <span>إجمالي السيارات</span>
+                        <strong id="inventoryTotal">0</strong>
+                    </div>
+
+                </div>
+            </article>
+
+            <article class="panel">
+                <div class="panel-head">
+                    <div>
+                        <span class="eyebrow">TOP PERFORMERS</span>
+                        <h2>أكثر السيارات مبيعًا</h2>
+                    </div>
+                </div>
+
+                <div class="table-wrap">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>السيارة</th>
+                                <th>عدد المبيعات</th>
+                                <th>القيمة</th>
+                            </tr>
+                        </thead>
+
+                        <tbody id="topVehiclesRows">
+                            <tr>
+                                <td colspan="3" class="empty">جاري تحميل البيانات...</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </article>
+
+        </section>
+
+        <section class="panel">
+            <div class="panel-head">
+                <div>
+                    <span class="eyebrow">SALES HISTORY</span>
+                    <h2>تفاصيل المبيعات</h2>
+                </div>
+            </div>
+
+            <div class="table-wrap">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>رقم العملية</th>
+                            <th>السيارة</th>
+                            <th>العميل</th>
+                            <th>سعر البيع</th>
+                            <th>المقدم</th>
+                            <th>المدفوعات الإضافية</th>
+                            <th>المتبقي</th>
+                            <th>التاريخ</th>
+                        </tr>
+                    </thead>
+
+                    <tbody id="reportSalesRows">
+                        <tr>
+                            <td colspan="8" class="empty">جاري تحميل البيانات...</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+
+        <footer>
+            Turbo_Drive © <span id="year"></span> — تقارير المعرض
+        </footer>
+
+    </main>
+
+    <script src="js/reports.js"></script>
+</body>
+</html>

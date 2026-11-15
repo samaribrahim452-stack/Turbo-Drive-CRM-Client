@@ -1,0 +1,262 @@
+ 
+.vehicles-main {
+    min-width: 0;
+}
+
+.vehicle-stats {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 16px;
+    margin-bottom: 20px;
+}
+
+.vehicles-heading h2 {
+    margin-bottom: 0;
+}
+
+.vehicle-filters {
+    display: grid;
+    grid-template-columns: 2fr 1fr 1fr auto;
+    gap: 10px;
+    margin: 20px 0;
+}
+
+.vehicle-filters input,
+.vehicle-filters select,
+.form-field input,
+.form-field select,
+.form-field textarea {
+    width: 100%;
+    min-width: 0;
+    border: 1px solid #e1e6ee;
+    background: #fff;
+    border-radius: 9px;
+    padding: 11px 12px;
+    font-family: inherit;
+    font-size: 13px;
+    color: #182235;
+    outline: none;
+}
+
+.vehicle-filters input:focus,
+.vehicle-filters select:focus,
+.form-field input:focus,
+.form-field select:focus,
+.form-field textarea:focus {
+    border-color: #7189aa;
+    box-shadow: 0 0 0 3px #dce8f855;
+}
+
+.reset-btn,
+.cancel-btn {
+    border: 1px solid #e1e6ee;
+    background: #fff;
+    color: #526176;
+    border-radius: 9px;
+    padding: 10px 15px;
+    font-family: inherit;
+    cursor: pointer;
+}
+
+.vehicles-table {
+    min-width: 760px;
+}
+
+.vehicle-name {
+    font-weight: 700;
+    color: #182235;
+}
+
+.vehicle-details {
+    display: block;
+    color: #8491a3;
+    font-size: 11px;
+    margin-top: 4px;
+}
+
+.status-badge {
+    display: inline-block;
+    padding: 5px 10px;
+    border-radius: 20px;
+    font-size: 11px;
+    white-space: nowrap;
+}
+
+.status-available {
+    color: #18794e;
+    background: #e6f5ed;
+}
+
+.status-reserved {
+    color: #946200;
+    background: #fff3d6;
+}
+
+.status-sold {
+    color: #a33b3b;
+    background: #fbe9e9;
+}
+
+.action-buttons {
+    display: flex;
+    gap: 7px;
+    white-space: nowrap;
+}
+
+.action-btn {
+    border: 0;
+    border-radius: 7px;
+    padding: 7px 10px;
+    font-family: inherit;
+    font-size: 11px;
+    cursor: pointer;
+}
+
+.edit-btn {
+    background: #eaf0f8;
+    color: #203b60;
+}
+
+.delete-btn {
+    background: #fff0f0;
+    color: #b33c3c;
+}
+
+.vehicle-message {
+    display: none;
+    padding: 11px 14px;
+    border-radius: 9px;
+    margin: 12px 0;
+    font-size: 13px;
+}
+
+.vehicle-message.error {
+    display: block;
+    color: #a33b3b;
+    background: #fff0f0;
+}
+
+.vehicle-message.success {
+    display: block;
+    color: #18794e;
+    background: #e6f5ed;
+}
+
+.modal-overlay {
+    display: none;
+    position: fixed;
+    inset: 0;
+    z-index: 1000;
+    background: #07152dbb;
+    padding: 25px;
+    align-items: center;
+    justify-content: center;
+}
+
+.modal-overlay.show {
+    display: flex;
+}
+
+.vehicle-modal {
+    background: #fff;
+    width: 100%;
+    max-width: 760px;
+    max-height: 90vh;
+    overflow-y: auto;
+    border-radius: 16px;
+    padding: 25px;
+    box-shadow: 0 20px 70px #0003;
+}
+
+.modal-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 22px;
+}
+
+.modal-header h2 {
+    margin-bottom: 0;
+}
+
+.close-modal {
+    border: 0;
+    background: #f0f3f7;
+    color: #34445b;
+    width: 36px;
+    height: 36px;
+    border-radius: 9px;
+    font-size: 24px;
+    cursor: pointer;
+}
+
+.form-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 15px;
+}
+
+.form-field label {
+    display: block;
+    font-size: 12px;
+    font-weight: 700;
+    margin-bottom: 7px;
+    color: #46546a;
+}
+
+.form-field textarea {
+    resize: vertical;
+}
+
+.full-field {
+    grid-column: 1 / -1;
+}
+
+.modal-actions {
+    display: flex;
+    justify-content: flex-start;
+    gap: 10px;
+    margin-top: 22px;
+    padding-top: 17px;
+    border-top: 1px solid #e7ebf1;
+}
+
+.modal-actions button {
+    min-width: 110px;
+}
+
+@media (max-width: 1000px) {
+    .vehicle-stats {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .vehicle-filters {
+        grid-template-columns: 1fr 1fr;
+    }
+}
+
+@media (max-width: 600px) {
+    .vehicle-stats,
+    .vehicle-filters,
+    .form-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .full-field {
+        grid-column: auto;
+    }
+
+    .vehicle-modal {
+        padding: 17px;
+    }
+
+    .modal-overlay {
+        padding: 10px;
+    }
+
+    .vehicles-heading {
+        align-items: flex-start;
+        gap: 12px;
+        flex-direction: column;
+    }
+}

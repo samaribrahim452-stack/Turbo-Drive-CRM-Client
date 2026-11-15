@@ -1,0 +1,185 @@
+
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>المبيعات | Turbo Drive</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/sales.css">
+</head>
+<body>
+
+    <aside class="sidebar">
+        <div class="brand">
+            <div class="brand-mark">TD</div>
+            <div>
+                <strong>TURBO DRIVE</strong>
+                <small>Showroom CRM</small>
+            </div>
+        </div>
+
+      <nav>
+    <a href="index.html">نظرة عامة</a>
+    <a href="vehicles.html">السيارات</a>
+    <a href="customers.html">العملاء</a>
+    <a class="active" href="sales.html">المبيعات</a>
+    <a href="payments.html">المدفوعات</a>
+    <a href="employees.html">الموظفون</a>
+    <a href="reports.html">التقارير</a>
+    <a href="settings.html">الإعدادات</a>
+</nav>
+
+        <div class="sidebar-foot">Turbo Drive Management System</div>
+    </aside>
+
+    <main class="main">
+        <header class="topbar">
+            <div>
+                <span class="eyebrow">SALES MANAGEMENT</span>
+                <h1>إدارة المبيعات</h1>
+            </div>
+            <div class="user-chip">
+                <div class="avatar">S</div>
+                <span>مدير المعرض</span>
+            </div>
+        </header>
+
+        <section class="stats">
+            <div class="stat">
+                <span>إجمالي عمليات البيع</span>
+                <strong id="totalSales">0</strong>
+                <small>كل العمليات المسجلة</small>
+            </div>
+
+            <div class="stat">
+                <span>إجمالي قيمة المبيعات</span>
+                <strong id="totalRevenue">0</strong>
+                <small>ريال سعودي</small>
+            </div>
+
+            <div class="stat">
+                <span>المبالغ المحصلة</span>
+                <strong id="totalCollected">0</strong>
+                <small>ريال سعودي</small>
+            </div>
+
+            <div class="stat accent">
+                <span>المبالغ المتبقية</span>
+                <strong id="totalRemaining">0</strong>
+                <small>ريال سعودي</small>
+            </div>
+        </section>
+
+        <section class="panel">
+            <div class="panel-head">
+                <div>
+                    <h2>سجل المبيعات</h2>
+                    <p class="muted">متابعة عمليات بيع السيارات والعملاء</p>
+                </div>
+                <button class="primary" id="openSaleModal">+ تسجيل عملية بيع</button>
+            </div>
+
+            <div class="sales-filters">
+                <input type="text" id="searchSales" placeholder="ابحث باسم العميل أو السيارة...">
+                <select id="statusFilter">
+                    <option value="">كل الحالات</option>
+                    <option value="مبدئية">مبدئية</option>
+                    <option value="مكتملة">مكتملة</option>
+                    <option value="ملغاة">ملغاة</option>
+                </select>
+                <button class="reset-btn" id="resetFilters">إعادة ضبط</button>
+            </div>
+
+            <div class="table-wrap">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>رقم العملية</th>
+                            <th>السيارة</th>
+                            <th>العميل</th>
+                            <th>سعر البيع</th>
+                            <th>المقدم</th>
+                            <th>المتبقي</th>
+                            <th>الحالة</th>
+                            <th>التاريخ</th>
+                        </tr>
+                    </thead>
+                    <tbody id="salesTableBody">
+                        <tr>
+                            <td colspan="8" class="empty">جاري تحميل المبيعات...</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+
+        <footer>© 2026 Turbo Drive — All Rights Reserved</footer>
+    </main>
+
+    <div class="modal-overlay" id="saleModal">
+        <div class="sale-modal">
+            <div class="modal-header">
+                <div>
+                    <span class="eyebrow">NEW TRANSACTION</span>
+                    <h2>تسجيل عملية بيع جديدة</h2>
+                </div>
+                <button type="button" class="close-modal" id="closeSaleModal">×</button>
+            </div>
+
+            <form id="saleForm">
+                <div class="form-grid">
+                    <div class="form-group">
+                        <label for="vehicleId">السيارة</label>
+                        <select id="vehicleId" required>
+                            <option value="">اختاري السيارة</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="customerId">العميل</label>
+                        <select id="customerId" required>
+                            <option value="">اختاري العميل</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="salePrice">سعر البيع (ريال)</label>
+                        <input type="number" id="salePrice" min="0" step="0.01" required placeholder="مثال: 350000">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="depositAmount">المقدم (ريال)</label>
+                        <input type="number" id="depositAmount" min="0" step="0.01" value="0" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="saleStatus">حالة البيع</label>
+                        <select id="saleStatus" required>
+                            <option value="مبدئية">مبدئية</option>
+                            <option value="مكتملة">مكتملة</option>
+                            <option value="ملغاة">ملغاة</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="remaining-preview">
+                    <span>المبلغ المتبقي على العميل</span>
+                    <strong id="remainingPreview">0 ريال</strong>
+                </div>
+
+                <p id="formMessage" class="form-message"></p>
+
+                <div class="modal-actions">
+                    <button type="button" class="cancel-btn" id="cancelSale">إلغاء</button>
+                    <button type="submit" class="primary" id="saveSaleBtn">حفظ عملية البيع</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <script src="js/sales.js"></script>
+</body>
+</html>

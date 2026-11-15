@@ -1,0 +1,249 @@
+
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>إدارة السيارات | Turbo Drive</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/vehicles.css">
+</head>
+<body>
+
+    <aside class="sidebar">
+        <div class="brand">
+            <span class="brand-mark">TD</span>
+            <div>
+                <strong>Turbo Drive</strong>
+                <small>إدارة المعرض</small>
+            </div>
+        </div>
+
+        <nav>
+    <a href="index.html">نظرة عامة</a>
+    <a class="active" href="vehicles.html">السيارات</a>
+    <a href="customers.html">العملاء</a>
+    <a href="sales.html">المبيعات</a>
+    <a href="payments.html">المدفوعات</a>
+    <a href="employees.html">الموظفون</a>
+    <a href="reports.html">التقارير</a>
+    <a href="settings.html">الإعدادات</a>
+</nav>
+
+        <div class="sidebar-foot">نسخة مستقلة للمعرض</div>
+    </aside>
+
+    <main class="main vehicles-main">
+
+        <header class="topbar">
+            <div>
+                <span class="eyebrow">إدارة المخزون</span>
+                <h1>إدارة السيارات</h1>
+                <p class="muted">تابع سيارات المعرض وأدر بياناتها بسهولة.</p>
+            </div>
+
+            <div class="user-chip">
+                <span class="avatar">م</span>
+                <span>مدير المعرض</span>
+            </div>
+        </header>
+
+        <section class="vehicle-stats">
+            <article class="stat">
+                <span>إجمالي السيارات</span>
+                <strong id="totalVehicles">0</strong>
+                <small>سيارة مسجلة</small>
+            </article>
+
+            <article class="stat">
+                <span>السيارات المتاحة</span>
+                <strong id="availableVehicles">0</strong>
+                <small>جاهزة للبيع</small>
+            </article>
+
+            <article class="stat">
+                <span>السيارات المحجوزة</span>
+                <strong id="reservedVehicles">0</strong>
+                <small>قيد الحجز</small>
+            </article>
+
+            <article class="stat accent">
+                <span>السيارات المباعة</span>
+                <strong id="soldVehicles">0</strong>
+                <small>تم بيعها</small>
+            </article>
+        </section>
+
+        <section class="panel">
+
+            <div class="panel-head vehicles-heading">
+                <div>
+                    <span class="eyebrow">قائمة المخزون</span>
+                    <h2>سيارات المعرض</h2>
+                </div>
+
+                <button class="primary" id="addVehicleBtn">
+                    + إضافة سيارة
+                </button>
+            </div>
+
+            <div class="vehicle-filters">
+                <input type="search" id="searchInput" placeholder="ابحث بالماركة أو الموديل...">
+
+                <select id="statusFilter">
+                    <option value="">كل الحالات</option>
+                    <option value="متاحة">متاحة</option>
+                    <option value="محجوزة">محجوزة</option>
+                    <option value="مباعة">مباعة</option>
+                </select>
+
+                <input type="number" id="yearFilter" placeholder="سنة الصنع">
+                <button type="button" class="reset-btn" id="resetFilters">إعادة ضبط</button>
+            </div>
+
+            <div id="message" class="vehicle-message"></div>
+
+            <div class="table-wrap">
+                <table class="vehicles-table">
+                    <thead>
+                        <tr>
+                            <th>السيارة</th>
+                            <th>السنة</th>
+                            <th>السعر</th>
+                            <th>المحرك</th>
+                            <th>الحالة</th>
+                            <th>الإجراءات</th>
+                        </tr>
+                    </thead>
+
+                    <tbody id="vehiclesTableBody">
+                        <tr>
+                            <td colspan="6" class="empty">جاري تحميل السيارات...</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+        </section>
+    </main>
+
+    <!-- نافذة إضافة وتعديل السيارة -->
+    <div class="modal-overlay" id="vehicleModal">
+        <div class="vehicle-modal">
+
+            <div class="modal-header">
+                <div>
+                    <span class="eyebrow">بيانات المخزون</span>
+                    <h2 id="modalTitle">إضافة سيارة جديدة</h2>
+                </div>
+
+                <button type="button" class="close-modal" id="closeModal">×</button>
+            </div>
+
+            <form id="vehicleForm">
+
+                <div class="form-grid">
+
+                    <div class="form-field">
+                        <label for="make">الماركة *</label>
+                        <input id="make" name="make" required maxlength="100" placeholder="مثال: Toyota">
+                    </div>
+
+                    <div class="form-field">
+                        <label for="model">الموديل *</label>
+                        <input id="model" name="model" required maxlength="100" placeholder="مثال: Camry">
+                    </div>
+
+                    <div class="form-field">
+                        <label for="year">سنة الصنع *</label>
+                        <input id="year" name="year" type="number" min="1900" max="2100" required>
+                    </div>
+
+                    <div class="form-field">
+                        <label for="price">السعر بالريال السعودي *</label>
+                        <input id="price" name="price" type="number" min="0" step="0.01" required>
+                    </div>
+
+                    <div class="form-field">
+                        <label for="status">الحالة</label>
+                        <select id="status" name="status">
+                            <option value="متاحة">متاحة</option>
+                            <option value="محجوزة">محجوزة</option>
+                            <option value="مباعة">مباعة</option>
+                        </select>
+                    </div>
+
+                    <div class="form-field">
+                        <label for="color">اللون</label>
+                        <input id="color" name="color" maxlength="100" placeholder="أسود">
+                    </div>
+
+                    <div class="form-field">
+                        <label for="engineType">نوع المحرك</label>
+                        <input id="engineType" name="engineType" maxlength="100" placeholder="3.0L V6">
+                    </div>
+
+                    <div class="form-field">
+                        <label for="fuelType">نوع الوقود</label>
+                        <select id="fuelType" name="fuelType">
+                            <option value="">اختر نوع الوقود</option>
+                            <option value="بنزين">بنزين</option>
+                            <option value="ديزل">ديزل</option>
+                            <option value="كهرباء">كهرباء</option>
+                            <option value="هجين">هجين</option>
+                        </select>
+                    </div>
+
+                    <div class="form-field">
+                        <label for="transmission">ناقل الحركة</label>
+                        <select id="transmission" name="transmission">
+                            <option value="">اختر ناقل الحركة</option>
+                            <option value="أوتوماتيك">أوتوماتيك</option>
+                            <option value="يدوي">يدوي</option>
+                        </select>
+                    </div>
+
+                    <div class="form-field">
+                        <label for="mileage">الممشى بالكيلومتر</label>
+                        <input id="mileage" name="mileage" type="number" min="0" max="2000000" value="0">
+                    </div>
+
+                    <div class="form-field">
+                        <label for="vin">رقم الشاسيه</label>
+                        <input id="vin" name="vin" maxlength="50">
+                    </div>
+
+                    <div class="form-field">
+                        <label for="plateNumber">رقم اللوحة</label>
+                        <input id="plateNumber" name="plateNumber" maxlength="30">
+                    </div>
+
+                    <div class="form-field full-field">
+                        <label for="imageUrl">رابط صورة السيارة</label>
+                        <input id="imageUrl" name="imageUrl" type="url" maxlength="500" placeholder="https://example.com/car.jpg">
+                    </div>
+
+                    <div class="form-field full-field">
+                        <label for="description">وصف السيارة</label>
+                        <textarea id="description" name="description" maxlength="1000" rows="3"></textarea>
+                    </div>
+
+                </div>
+
+                <div class="modal-actions">
+                    <button type="button" class="cancel-btn" id="cancelModal">إلغاء</button>
+                    <button type="submit" class="primary" id="saveVehicleBtn">حفظ السيارة</button>
+                </div>
+
+            </form>
+        </div>
+    </div>
+
+    <script src="js/vehicles.js"></script>
+</body>
+</html>

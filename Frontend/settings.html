@@ -1,0 +1,194 @@
+
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Turbo_Drive | الإعدادات</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/settings.css">
+</head>
+<body>
+
+    <aside class="sidebar">
+        <div class="brand">
+            <span class="brand-mark">TD</span>
+            <div>
+                <strong>Turbo_Drive</strong>
+                <small>إدارة المعرض</small>
+            </div>
+        </div>
+
+        <nav>
+            <a href="index.html">نظرة عامة</a>
+            <a href="vehicles.html">السيارات</a>
+            <a href="customers.html">العملاء</a>
+            <a href="sales.html">المبيعات</a>
+            <a href="payments.html">المدفوعات</a>
+            <a href="employees.html">الموظفون</a>
+            <a href="reports.html">التقارير</a>
+            <a class="active" href="settings.html">الإعدادات</a>
+        </nav>
+
+        <div class="sidebar-foot">نسخة مستقلة للمعرض</div>
+    </aside>
+
+    <main class="main">
+
+        <header class="topbar">
+            <div>
+                <span class="eyebrow">SYSTEM CONFIGURATION</span>
+                <h1>إعدادات المعرض</h1>
+            </div>
+
+            <div class="user-chip">
+                <span class="avatar">م</span>
+                <span>مدير المعرض</span>
+            </div>
+        </header>
+
+        <section class="settings-welcome">
+            <div>
+                <span class="eyebrow">CONTROL PANEL</span>
+                <h2>إدارة بيانات وتفضيلات المعرض</h2>
+                <p>خصص بيانات المعرض التي تظهر في نظام الإدارة.</p>
+            </div>
+
+            <div class="settings-icon">⚙</div>
+        </section>
+
+        <form id="settingsForm">
+
+            <section class="panel settings-panel">
+                <div class="settings-heading">
+                    <div class="settings-symbol">🏢</div>
+                    <div>
+                        <h2>بيانات المعرض</h2>
+                        <p class="muted">المعلومات الأساسية وبيانات التواصل.</p>
+                    </div>
+                </div>
+
+                <div class="settings-fields">
+
+                    <div class="field">
+                        <label for="showroomName">اسم المعرض</label>
+                        <input type="text" id="showroomName"
+                               placeholder="Turbo_Drive" required>
+                    </div>
+
+                    <div class="field">
+                        <label for="ownerName">اسم المسؤول</label>
+                        <input type="text" id="ownerName"
+                               placeholder="اسم مدير المعرض">
+                    </div>
+
+                    <div class="field">
+                        <label for="phone">رقم الهاتف</label>
+                        <input type="tel" id="phone"
+                               placeholder="رقم التواصل">
+                    </div>
+
+                    <div class="field">
+                        <label for="email">البريد الإلكتروني</label>
+                        <input type="email" id="email"
+                               placeholder="example@email.com">
+                    </div>
+
+                    <div class="field full-field">
+                        <label for="address">عنوان المعرض</label>
+                        <textarea id="address" rows="3"
+                                  placeholder="اكتب عنوان المعرض"></textarea>
+                    </div>
+
+                    <div class="field full-field">
+                        <label for="description">نبذة عن المعرض</label>
+                        <textarea id="description" rows="3"
+                                  placeholder="نبذة مختصرة عن المعرض"></textarea>
+                    </div>
+
+                </div>
+            </section>
+
+            <section class="panel settings-panel">
+                <div class="settings-heading">
+                    <div class="settings-symbol">🌐</div>
+                    <div>
+                        <h2>التفضيلات العامة</h2>
+                        <p class="muted">تحديد العملة وطريقة عرض البيانات.</p>
+                    </div>
+                </div>
+
+                <div class="settings-fields">
+
+                    <div class="field">
+                        <label for="currency">العملة</label>
+                        <select id="currency">
+                            <option value="ر.س">ريال سعودي (ر.س)</option>
+                            <option value="ج.م">جنيه مصري (ج.م)</option>
+                            <option value="$">دولار أمريكي ($)</option>
+                        </select>
+                    </div>
+
+                    <div class="field">
+                        <label for="language">لغة النظام</label>
+                        <select id="language">
+                            <option value="ar">العربية</option>
+                            <option value="en">English</option>
+                        </select>
+                    </div>
+
+                </div>
+            </section>
+
+            <section class="panel settings-panel">
+                <div class="settings-heading">
+                    <div class="settings-symbol">🔔</div>
+                    <div>
+                        <h2>التنبيهات</h2>
+                        <p class="muted">إعدادات التنبيهات داخل النظام.</p>
+                    </div>
+                </div>
+
+                <label class="toggle-row">
+                    <span>
+                        <strong>تنبيهات المخزون</strong>
+                        <small>إظهار تنبيهات السيارات ذات الحالة غير المتاحة.</small>
+                    </span>
+                    <input type="checkbox" id="stockAlerts">
+                </label>
+
+                <label class="toggle-row">
+                    <span>
+                        <strong>تنبيهات المدفوعات</strong>
+                        <small>تفعيل التنبيهات المتعلقة بالمبالغ المتبقية.</small>
+                    </span>
+                    <input type="checkbox" id="paymentAlerts">
+                </label>
+            </section>
+
+            <div class="settings-actions">
+                <p id="settingsMessage"></p>
+                <button type="button" class="secondary" id="resetSettings">
+                    استعادة الافتراضي
+                </button>
+                <button type="submit" class="primary" id="saveSettings">
+                    حفظ الإعدادات
+                </button>
+            </div>
+
+        </form>
+
+        <footer>
+            Turbo_Drive © <span id="year"></span> — إعدادات النظام
+        </footer>
+
+    </main>
+
+    <script src="js/settings.js"></script>
+</body>
+</html>
