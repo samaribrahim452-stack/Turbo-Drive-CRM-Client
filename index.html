@@ -1,0 +1,144 @@
+ 
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Turbo_Drive | إدارة المعرض</title>
+
+  <!-- تحويل الزائر إلى صفحة تسجيل الدخول -->
+  <script>
+    window.location.replace("login.html");
+  </script>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <aside class="sidebar">
+    <div class="brand">
+      <span class="brand-mark">TD</span>
+      <div>
+        <strong>Turbo_Drive</strong>
+        <small>إدارة المعرض</small>
+      </div>
+    </div>
+
+    <nav>
+      <a class="active" href="index.html">نظرة عامة</a>
+      <a href="vehicles.html">السيارات</a>
+      <a href="customers.html">العملاء</a>
+      <a href="sales.html">المبيعات</a>
+      <a href="payments.html">المدفوعات</a>
+      <a href="employees.html">الموظفون</a>
+      <a href="reports.html">التقارير</a>
+      <a href="settings.html">الإعدادات</a>
+    </nav>
+
+    <div class="sidebar-foot">نسخة مستقلة للمعرض</div>
+  </aside>
+
+  <main class="main">
+    <header class="topbar">
+      <div>
+        <span class="eyebrow">لوحة التحكم</span>
+        <h1>مرحبًا بك في Turbo_Drive</h1>
+      </div>
+      <div class="user-chip">
+        <span class="avatar">م</span>
+        <span>مدير المعرض</span>
+      </div>
+    </header>
+
+    <section id="overview" class="stats">
+      <article class="stat">
+        <span>إجمالي السيارات</span>
+        <strong id="vehicleCount">0</strong>
+        <small>سيارة في المخزون</small>
+      </article>
+      <article class="stat">
+        <span>العملاء</span>
+        <strong id="customerCount">0</strong>
+        <small>عميل مسجل</small>
+      </article>
+      <article class="stat">
+        <span>المبيعات</span>
+        <strong id="salesCount">0</strong>
+        <small>عملية بيع مسجلة</small>
+      </article>
+      <article class="stat accent">
+        <span>قيمة المبيعات</span>
+        <strong id="salesValue">0 ر.س</strong>
+        <small>إجمالي القيمة المسجلة</small>
+      </article>
+    </section>
+
+    <section id="vehicles" class="panel">
+      <div class="panel-head">
+        <div>
+          <span class="eyebrow">المخزون</span>
+          <h2>السيارات</h2>
+        </div>
+        <button id="addVehicleBtn" class="primary">إضافة سيارة تجريبية</button>
+      </div>
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th>السيارة</th>
+              <th>سنة الصنع</th>
+              <th>السعر</th>
+              <th>الحالة</th>
+            </tr>
+          </thead>
+          <tbody id="vehicleRows">
+            <tr>
+              <td colspan="4" class="empty">لا توجد بيانات تجريبية بعد</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <section class="two-col">
+      <article id="customers" class="panel">
+        <span class="eyebrow">العلاقات</span>
+        <h2>العملاء</h2>
+        <p class="muted">إدارة بيانات العملاء وطرق التواصل والمتابعة.</p>
+        <div class="placeholder">سيتم ربط هذا القسم بقاعدة البيانات في المرحلة التالية.</div>
+      </article>
+
+      <article id="sales" class="panel">
+        <span class="eyebrow">الأداء</span>
+        <h2>المبيعات</h2>
+        <p class="muted">متابعة الصفقات والعربون والمدفوعات.</p>
+        <div class="placeholder">سيتم بناء دورة البيع والمدفوعات لاحقًا.</div>
+      </article>
+    </section>
+
+    <section id="employees" class="panel">
+      <span class="eyebrow">الفريق</span>
+      <h2>الموظفون والصلاحيات</h2>
+      <p class="muted">سيكون لكل موظف حساب وصلاحيات محددة بعد تفعيل نظام تسجيل الدخول.</p>
+    </section>
+
+    <section id="reports" class="panel">
+      <span class="eyebrow">التحليلات</span>
+      <h2>التقارير</h2>
+      <p class="muted">تقارير المخزون والمبيعات والأرباح ستُضاف بعد ربط البيانات الفعلية.</p>
+    </section>
+
+    <section id="settings" class="panel">
+      <span class="eyebrow">إعدادات النسخة</span>
+      <h2>بيانات المعرض</h2>
+      <p class="muted">سيتم تخصيص اسم المعرض وشعاره وبيانات التواصل لكل نسخة بشكل مستقل.</p>
+    </section>
+
+    <footer>Turbo_Drive © <span id="year"></span> — نموذج أولي قيد التطوير</footer>
+  </main>
+
+  <script src="js/app.js"></script>
+</body>
+</html>
